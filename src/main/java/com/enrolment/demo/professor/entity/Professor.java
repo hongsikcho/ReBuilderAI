@@ -1,8 +1,11 @@
 package com.enrolment.demo.professor.entity;
 
 import com.enrolment.demo.lecture.entity.Lecture;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,5 +19,8 @@ public class Professor {
     private String name;
 
     @OneToMany(mappedBy = "professor")
+    @NotNull
+    @Min(value = 1)
+    @Max(value = 2)
     private List<Lecture> Lectures = new ArrayList();
 }
