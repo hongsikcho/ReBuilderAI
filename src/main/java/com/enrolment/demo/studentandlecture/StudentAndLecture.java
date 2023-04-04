@@ -1,6 +1,6 @@
 package com.enrolment.demo.studentandlecture;
 
-import com.enrolment.demo.lecture.Lecture;
+import com.enrolment.demo.lecture.entity.Lecture;
 import com.enrolment.demo.student.entity.Student;
 
 import javax.persistence.Entity;
