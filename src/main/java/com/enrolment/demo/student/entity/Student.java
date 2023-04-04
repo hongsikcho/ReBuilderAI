@@ -1,9 +1,7 @@
 package com.enrolment.demo.student.entity;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import com.sun.istack.NotNull;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +15,9 @@ import java.util.stream.Collectors;
 @Entity
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student implements UserDetails {
 
     @Id
@@ -41,13 +42,8 @@ public class Student implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
     public String getUsername() {
-        return null;
+        return name;
     }
 
     @Override
