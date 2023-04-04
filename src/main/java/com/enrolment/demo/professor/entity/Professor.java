@@ -16,6 +16,7 @@ public class Professor {
     @Column(name = "PROFESSOR_ID")
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "professor")

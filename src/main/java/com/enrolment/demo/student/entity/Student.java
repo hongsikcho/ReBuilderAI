@@ -28,6 +28,7 @@ public class Student implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private String name;
 
     @ElementCollection(fetch = FetchType.EAGER)

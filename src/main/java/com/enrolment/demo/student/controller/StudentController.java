@@ -14,8 +14,6 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RestController
 public class StudentController {
-
-    private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final StudentRepository studentRepository;
 
