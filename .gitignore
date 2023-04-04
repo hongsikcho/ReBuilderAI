@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+###키값 보호를 위한 ignore###
+application.properties
