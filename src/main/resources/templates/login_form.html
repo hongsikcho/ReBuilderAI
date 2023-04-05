@@ -1,20 +1,55 @@
-<html layout:decorate="~{layout}">
-<div layout:fragment="content" class="container my-3">
-  <form th:action="@{/student/login}" method="post">
-    <div th:if="${param.error}">
-      <div class="alert alert-danger">
-        사용자ID 또는 비밀번호를 확인해 주세요.
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="username" class="form-label">사용자ID</label>
-      <input type="text" name="username" id="username" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">비밀번호</label>
-      <input type="password" name="password" id="password" class="form-control">
-    </div>
-    <button type="submit" class="btn btn-primary">로그인</button>
-  </form>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JWT Login Example</title>
+</head>
+<body>
+<h1>JWT Login Example</h1>
+<form>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password"><br><br>
+  <input type="submit" value="Login" id="login-button">
+</form>
+<script>
+  const loginForm = document.querySelector('form');
+  const emailInput = document.querySelector('#email');
+  const passwordInput = document.querySelector('#password');
+  const loginButton = document.querySelector('#login-button');
+
+  loginForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    fetch('/student/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+            .then(response => response.text())
+            .then(token => {
+              localStorage.setItem('jwtToken', token); // 토큰 저장
+              window.location.href = '/apply'; // 로그인 성공 시 메인 페이지로 이동
+            })
+            .catch(error => console.error(error));
+  });
+
+  function getJwtToken() {
+    return localStorage.getItem('jwtToken');
+  }
+
+  // 나머지 API 요청에 대해 JWT 토큰을 포함한 헤더 전송
+  fetch('/api/some-resource', {
+    headers: {
+      'Authorization': `Bearer ${getJwtToken()}`
+    }
+  })
+          .then(response => response.json())
+          .then(data => console.log(data))
+          .catch(error => console.error(error));
+</script>
+</body>
 </html>

@@ -34,7 +34,7 @@ public class WebSecurityConfig {
                 .and()
                 .authorizeRequests() // 요청에 대한 사용권한 체크
                 .antMatchers("/apply/**").authenticated()
-                .antMatchers("/open/**").hasRole("ADMIN")
+                .antMatchers("/open/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),

@@ -31,6 +31,9 @@ public class Student implements UserDetails {
     @Column(nullable = false)
     private String name;
 
+    @Column(unique = true, nullable = false)
+    private String email;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
